@@ -17,8 +17,8 @@ public class Barbearia {
             return false;
         } else {
             System.out.println("Cliente " + cliente.getId() + " esperando corte...");
-            filaDeEspera.add(cliente); // Adiciona o cliente à fila
-            notify();  // Notifica um barbeiro que há um cliente esperando
+            filaDeEspera.add(cliente);
+            notify();
             return true;
         }
     }
@@ -27,16 +27,16 @@ public class Barbearia {
     public synchronized Cliente proximoCliente(Barbeiro barbeiro) throws InterruptedException {
         while (filaDeEspera.isEmpty()) {
             System.out.println("Barbeiro " + barbeiro.getId() + " indo dormir um pouco... não há clientes na barbearia...");
-            wait(); // O barbeiro espera por um cliente
+            wait();
         }
 
-        Cliente cliente = filaDeEspera.poll(); // Remove o primeiro cliente da fila
+        Cliente cliente = filaDeEspera.poll();
         System.out.println("Barbeiro " + barbeiro.getId() + " acordou! Começando os trabalhos com o Cliente " + cliente.getId());
-        return cliente; // O barbeiro começa a atender o cliente
+        return cliente;
     }
 
     public synchronized void corteTerminado(Cliente cliente) {
         System.out.println("Cliente " + cliente.getId() + " terminou o corte... saindo da barbearia!");
-        notify(); // Notifica outro barbeiro que pode atender o próximo cliente
+        notify();
     }
 }

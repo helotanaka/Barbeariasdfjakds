@@ -22,6 +22,7 @@ public class Barbeiro implements Runnable {
                         // Simula o tempo de corte de cabelo
                         Thread.sleep((long) (Math.random() * 2000 + 1000));
                     }
+                    barbearia.corteTerminado(cliente); // Termina o corte e libera o cliente
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();

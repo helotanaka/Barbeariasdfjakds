@@ -13,19 +13,15 @@ public class Cliente implements Runnable {
 
     @Override
     public void run() {
-        try {
-            if (barbearia.cortaCabelo(this)) {
-                // O cliente espera até ser chamado pelo barbeiro
-                synchronized (this) {
-                    System.out.println("Cliente " + getId() + " cortando cabelo...");
-                    Thread.sleep(3000); // Simula o tempo de corte de cabelo
-                    barbearia.corteTerminado(this); // Cliente termina o corte
+        while (true) {
+            try {
+                if (barbearia.cortaCabelo(this)) {
+                    break;
                 }
-            } else {
-                Thread.sleep(3000); // O cliente tenta novamente após esperar
+                Thread.sleep((long) (Math.random() * 2000 + 1000));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
     }
 }

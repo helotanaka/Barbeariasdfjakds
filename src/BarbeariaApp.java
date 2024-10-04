@@ -8,14 +8,14 @@ public class BarbeariaApp {
 
         // Criação e inicialização dos barbeiros
         for (int i = 1; i <= numBarbeiros; i++) {
-            Barbeiro barbeiro = new Barbeiro(i, barbearia); // Cada barbeiro recebe um ID
-            new Thread(barbeiro).start(); // Inicializa a thread para cada barbeiro
+            Barbeiro barbeiro = new Barbeiro(i, barbearia);
+            new Thread(barbeiro).start();
         }
 
         // Criação e inicialização dos clientes
         for (int i = 1; i <= numClientes; i++) {
-            Cliente cliente = new Cliente(i, barbearia); // Cada cliente recebe um ID
-            new Thread(cliente).start(); // Inicializa a thread para cada cliente
+            Cliente cliente = new Cliente(i, barbearia);
+            new Thread(cliente).start();
         }
     }
 }
